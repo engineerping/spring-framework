@@ -288,8 +288,13 @@ configure(allprojects) { project ->
 			cacheChangingModulesFor 0, "seconds"
 		}
 		repositories {
+			mavenLocal()
+			maven { url "https://maven.aliyun.com/repository/public"}
 			mavenCentral()
 			maven { url "https://repo.spring.io/libs-spring-framework-build" }
+			jcenter()
+			maven { url "https://repo.spring.io/snapshot" }
+//			maven { url "https://repo.spring.io/milestone" }
 		}
 	}
 	configurations.all {
