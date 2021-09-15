@@ -1,6 +1,12 @@
-SysConfig.java
- SysConfig
-TestMain.java
- TestMain
-SysUser.java
- SysUser
+org/gcsp/springaoptest/MyBeanPostProcessor.java
+ org.gcsp.springaoptest.MyBeanPostProcessor
+org/gcsp/springioctest/SysUser.java
+ org.gcsp.springioctest.SysUser
+org/gcsp/springaoptest/MyBeanFactoryPostProcessor.java
+ org.gcsp.springaoptest.MyBeanFactoryPostProcessor
+org/gcsp/springioctest/annotation/SysConfig.java
+ org.gcsp.springioctest.annotation.SysConfig
+org/gcsp/springioctest/annotation/TestAnnotationMain.java
+ org.gcsp.springioctest.annotation.TestAnnotationMain
+org/gcsp/springioctest/xml/TestXmlMain.java
+ org.gcsp.springioctest.xml.TestXmlMain

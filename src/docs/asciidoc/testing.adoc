@@ -7112,7 +7112,7 @@ request. Rather, you have to set it up to be similar to the following example:
 [source,java,indent=0,subs="verbatim,quotes",role="primary"]
 .Java
 ----
-	mockMvc.perform(multipart("/doc").file("a1", "ABC".getBytes("UTF-8")));
+	mockMvc.perform(multipart("/doc").file("a1", "org.gcsp.springioctest.ABC".getBytes("UTF-8")));
 ----
 
 [source,kotlin,indent=0,subs="verbatim,quotes",role="secondary"]
@@ -7121,7 +7121,7 @@ request. Rather, you have to set it up to be similar to the following example:
 	import org.springframework.test.web.servlet.multipart
 
 	mockMvc.multipart("/doc") {
-		file("a1", "ABC".toByteArray(charset("UTF8")))
+		file("a1", "org.gcsp.springioctest.ABC".toByteArray(charset("UTF8")))
 	}
 ----
 

@@ -547,6 +547,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 			StartupStep contextRefresh = this.applicationStartup.start("spring.context.refresh");
 
 			// Prepare this context for refreshing.
+			//为刷新操作准备当前上下文
 			prepareRefresh();
 
 			// Tell the subclass to refresh the internal bean factory.
@@ -616,8 +617,10 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 * active flag as well as performing any initialization of property sources.
 	 */
 	protected void prepareRefresh() {
-		// Switch to active.
+		//1.设置当前spring启动的时间
 		this.startupDate = System.currentTimeMillis();
+		// Switch to active.
+		//2.设置关闭/开启的标志位
 		this.closed.set(false);
 		this.active.set(true);
 
@@ -635,9 +638,11 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 
 		// Validate that all properties marked as required are resolvable:
 		// see ConfigurablePropertyResolver#setRequiredProperties
+		//3. 获取当前环境对象,并设置环境对象里的属性值
 		getEnvironment().validateRequiredProperties();
 
 		// Store pre-refresh ApplicationListeners...
+		//4.设置监听器的集合对象
 		if (this.earlyApplicationListeners == null) {
 			this.earlyApplicationListeners = new LinkedHashSet<>(this.applicationListeners);
 		}
@@ -649,6 +654,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 
 		// Allow for the collection of early ApplicationEvents,
 		// to be published once the multicaster is available...
+		//5.设置事件的集合对象
 		this.earlyApplicationEvents = new LinkedHashSet<>();
 	}
 
@@ -657,6 +663,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 * @see org.springframework.core.env.PropertySource.StubPropertySource
 	 * @see org.springframework.web.context.support.WebApplicationContextUtils#initServletPropertySources
 	 */
+
 	protected void initPropertySources() {
 		// For subclasses: do nothing by default.
 	}

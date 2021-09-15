@@ -1,3 +1,5 @@
+package org.gcsp.springioctest;
+
 public class SysUser {
 	private String username;
 	private String password;

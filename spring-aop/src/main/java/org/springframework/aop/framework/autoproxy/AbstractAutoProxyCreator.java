@@ -53,10 +53,17 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 /**
+ * 实现了{@link org.springframework.beans.factory.config.BeanPostProcessor}，
+ * 用 AOP 代理包装每个符合条件的 bean，在调用 bean 本身之前委托给指定的拦截器。
  * {@link org.springframework.beans.factory.config.BeanPostProcessor} implementation
  * that wraps each eligible bean with an AOP proxy, delegating to specified interceptors
  * before invoking the bean itself.
  *
+ * <p>此类区分“通用”拦截器：为它创建的所有代理共享，以及“特定”拦截器：每个 bean 实例唯一。
+ * 不需要任何通用的拦截器。如果有，则使用interceptorNames 属性设置它们。
+ * 与 {@link org.springframework.aop.framework.ProxyFactoryBean} 一样，
+ * 使用当前工厂中的拦截器名称而不是 bean 引用来允许正确处理原型顾问和拦截器：例如，支持有状态的混合。
+ * {@link #setInterceptorNames "interceptorNames"} 条目支持任何通知类型。
  * <p>This class distinguishes between "common" interceptors: shared for all proxies it
  * creates, and "specific" interceptors: unique per bean instance. There need not be any
  * common interceptors. If there are, they are set using the interceptorNames property.
@@ -65,17 +72,27 @@ import org.springframework.util.StringUtils;
  * of prototype advisors and interceptors: for example, to support stateful mixins.
  * Any advice type is supported for {@link #setInterceptorNames "interceptorNames"} entries.
  *
+ * <p>如果有大量 bean 需要用类似的代理包装，即委托给相同的拦截器，则这种自动代理特别有用。
+ * 代替 x 个目标 bean 的 x 个重复代理定义，您可以向 bean 工厂注册一个这样的后处理器以实现相同的效果。
  * <p>Such auto-proxying is particularly useful if there's a large number of beans that
  * need to be wrapped with similar proxies, i.e. delegating to the same interceptors.
  * Instead of x repetitive proxy definitions for x target beans, you can register
  * one single such post processor with the bean factory to achieve the same effect.
  *
+ * <p>子类可以应用任何策略来决定是否代理 bean，例如按类型、名称、定义细节等。它们还可以返回应仅应用于特
+ * 定 bean 实例的附加拦截器。一个简单的具体实现是 {@link BeanNameAutoProxyCreator}，
+ * 通过给定的名称标识要代理的 bean。
  * <p>Subclasses can apply any strategy to decide if a bean is to be proxied, e.g. by type,
  * by name, by definition details, etc. They can also return additional interceptors that
  * should just be applied to the specific bean instance. A simple concrete implementation is
  * {@link BeanNameAutoProxyCreator}, identifying the beans to be proxied via given names.
  *
- * <p>Any number of {@link TargetSourceCreator} implementations can be used to create
+ * <p>可以使用任意数量的 {@link TargetSourceCreator} 实现来创建自定义目标源：例如，池化原型对象。
+ * 即使没有建议，只要 TargetSourceCreator 指定自定义
+ * {@link org.springframework.aop.TargetSource}，也会发生自动代理。如果没有设置
+ * TargetSourceCreators，或者没有匹配，默认情况下将使用
+ * {@link org.springframework.aop.target.SingletonTargetSource} 来包装目标 bean 实例。
+ * * <p>Any number of {@link TargetSourceCreator} implementations can be used to create
  * a custom target source: for example, to pool prototype objects. Auto-proxying will
  * occur even if there is no advice, as long as a TargetSourceCreator specifies a custom
  * {@link org.springframework.aop.TargetSource}. If there are no TargetSourceCreators set,

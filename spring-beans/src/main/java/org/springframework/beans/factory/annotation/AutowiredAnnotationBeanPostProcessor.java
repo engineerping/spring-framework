@@ -470,10 +470,15 @@ public class AutowiredAnnotationBeanPostProcessor implements SmartInstantiationA
 		do {
 			final List<InjectionMetadata.InjectedElement> currElements = new ArrayList<>();
 
+			/*通过反射获取该类所有的字段，
+			并遍历每一个字段，
+			并通过方法findAutowiredAnnotation遍历每一个字段的所用注解，
+			并如果用autowired修饰了，
+			则返回auotowired相关属性*/
 			ReflectionUtils.doWithLocalFields(targetClass, field -> {
 				MergedAnnotation<?> ann = findAutowiredAnnotation(field);
 				if (ann != null) {
-					if (Modifier.isStatic(field.getModifiers())) {
+					if (Modifier.isStatic(field.getModifiers())) {//校验autowired注解是否用在了static方法上
 						if (logger.isInfoEnabled()) {
 							logger.info("Autowired annotation is not supported on static fields: " + field);
 						}
@@ -484,6 +489,7 @@ public class AutowiredAnnotationBeanPostProcessor implements SmartInstantiationA
 				}
 			});
 
+			//和上面一样的逻辑，但是是通过反射处理类的method
 			ReflectionUtils.doWithLocalMethods(targetClass, method -> {
 				Method bridgedMethod = BridgeMethodResolver.findBridgedMethod(method);
 				if (!BridgeMethodResolver.isVisibilityBridgeMethodPair(method, bridgedMethod)) {
@@ -508,17 +514,22 @@ public class AutowiredAnnotationBeanPostProcessor implements SmartInstantiationA
 					currElements.add(new AutowiredMethodElement(method, required, pd));
 				}
 			});
-
+			//用@Autowired修饰的注解可能不止一个，因此都加在currElements这个容器里面，一起处理
 			elements.addAll(0, currElements);
 			targetClass = targetClass.getSuperclass();
 		}
-		while (targetClass != null && targetClass != Object.class);
+		while (targetClass != null && targetClass != Object.class); //依次遍历父类
 
 		return InjectionMetadata.forElements(elements, clazz);
 	}
 
+	/**
+	 * @param ao 要处理的field(类的字段)
+	 * @return
+	 */
 	@Nullable
 	private MergedAnnotation<?> findAutowiredAnnotation(AccessibleObject ao) {
+		//获取field上的(合成后的(例如要考虑@Inherited))注解
 		MergedAnnotations annotations = MergedAnnotations.from(ao);
 		for (Class<? extends Annotation> type : this.autowiredAnnotationTypes) {
 			MergedAnnotation<?> annotation = annotations.get(type);

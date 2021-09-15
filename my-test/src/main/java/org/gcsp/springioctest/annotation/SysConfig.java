@@ -1,6 +1,8 @@
+package org.gcsp.springioctest.annotation;
+
+import org.gcsp.springioctest.SysUser;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
 
 /**
  *
@@ -8,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Configuration
 public class SysConfig {
 	@Bean
-	public SysUser sysUser(){
-		return new SysUser("新用户","123");
+	public SysUser sysUser2(){
+		return new SysUser("新用户","123456789");
 	}
 }

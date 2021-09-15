@@ -60,7 +60,7 @@ public class StandardEnvironment extends AbstractEnvironment {
 	public static final String SYSTEM_PROPERTIES_PROPERTY_SOURCE_NAME = "systemProperties";
 
 
-	/**
+	/**git
 	 * Create a new {@code StandardEnvironment} instance.
 	 */
 	public StandardEnvironment() {
@@ -91,6 +91,7 @@ public class StandardEnvironment extends AbstractEnvironment {
 	 */
 	@Override
 	protected void customizePropertySources(MutablePropertySources propertySources) {
+		//注入属性资源
 		propertySources.addLast(
 				new PropertiesPropertySource(SYSTEM_PROPERTIES_PROPERTY_SOURCE_NAME, getSystemProperties()));
 		propertySources.addLast(
