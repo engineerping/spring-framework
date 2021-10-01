@@ -96,6 +96,35 @@ import org.springframework.lang.Nullable;
  * <li>a custom {@code destroy-method} definition
  * </ol>
  *
+ * <p>Bean 工厂实现应该尽可能支持标准的 bean 生命周期接口。完整的初始化方法及其标准顺序是：
+ * <ol>
+ * <li>BeanNameAware 的 {@code setBeanName}
+ * <li>BeanClassLoaderAware 的 {@code setBeanClassLoader}
+ * <li>BeanFactoryAware 的 {@code setBeanFactory}
+ * <li>EnvironmentAware 的 {@code setEnvironment }
+ * <li>EmbeddedValueResolverAware 的{@code setEmbeddedValueResolver}
+ * <li>ResourceLoaderAware 的{@code setResourceLoader}（仅适用于在应用程序上下文中运行时）
+ * <li>ApplicationEventPublisherAware 的{@code setApplicationEventPublisher}（
+ * 仅适用于在应用程序上下文中运行时）
+ * <li >MessageSourceAware 的{@code setMessageSource}
+ * （仅在应用上下文中运行时适用）
+ * <li>ApplicationContextAware 的{@code setApplicationContext}
+ * （仅在应用上下文中运行时适用）
+ * <li>ServletContextAware 的{@code setServletContext}
+ * （仅在运行时适用）在 Web 应用程序上下文中）
+ * <li>{@code postProcessBeforeInitialization} BeanPostProcessors 的方法
+ * <li>InitializingBean 的 {@ code afterPropertiesSet}
+ * <li>自定义{@code init-method}定义
+ * <li>{@code postProcessAfterInitialization} BeanPostProcessors的方法
+ * <ol>
+ *
+ * <p>关闭bean工厂时，以下生命周期方法适用：
+ * <ol>
+ * < li>{@code postProcessBeforeDestruction} DestructionAwareBeanPostProcessors 的方法
+ * <li>DisposableBean 的 {@code destroy}
+ * <li>自定义 {@code destroy-method} 定义
+ * <ol>
+ *
  * @author Rod Johnson
  * @author Juergen Hoeller
  * @author Chris Beams
