@@ -190,7 +190,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 
 	/** Environment used by this context. */
 	@Nullable
-	private ConfigurableEnvironment environment; //应用程序全局的environment
+	private ConfigurableEnvironment environment; //应用程序全局的environment,从<init-param>加载进来的属性值会存放到environment中.
 
 	/** BeanFactoryPostProcessors to apply on refresh. */
 	private final List<BeanFactoryPostProcessor> beanFactoryPostProcessors = new ArrayList<>();
