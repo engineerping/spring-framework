@@ -125,6 +125,13 @@ import org.springframework.lang.Nullable;
  * <li>自定义 {@code destroy-method} 定义
  * <ol>
  *
+ * 类比作图书馆(开始):
+ * BeanFactory 是图书馆
+ * BeanDefinitionRegistry 是图书馆中的书架
+ * BeanDefinition 是书的详细信息 (RootBeanDefinition和ChildBeanDefinition是两个重要的实现类)
+ * Bean 是书
+ * 类比作图书馆(结束):
+ *
  * @author Rod Johnson
  * @author Juergen Hoeller
  * @author Chris Beams

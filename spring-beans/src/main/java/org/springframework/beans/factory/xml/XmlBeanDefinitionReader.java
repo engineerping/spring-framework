@@ -52,6 +52,16 @@ import org.springframework.util.xml.SimpleSaxErrorHandler;
 import org.springframework.util.xml.XmlValidationModeDetector;
 
 /**
+ * 用于 XML bean 定义的 Bean 定义阅读器。
+ * 将实际的 XML 文档读取委托给 {@link BeanDefinitionDocumentReader} 接口的实现。
+ * <p>通常应用于 {@link org.springframework.beans.factory.support.DefaultListableBeanFactory}
+ * 或 {@link org.springframework.context.support.GenericApplicationContext}。
+ * <p>该类加载一个 DOM 文档并将 BeanDefinitionDocumentReader 应用到它。
+ * 文档阅读器将使用给定的 bean 工厂注册每个 bean 定义，
+ * 与后者的 {@link org.springframework.beans.factory.support.BeanDefinitionRegistry}
+ * 接口的实现交谈。
+ * <br/><br/>
+ *
  * Bean definition reader for XML bean definitions.
  * Delegates the actual XML document reading to an implementation
  * of the {@link BeanDefinitionDocumentReader} interface.

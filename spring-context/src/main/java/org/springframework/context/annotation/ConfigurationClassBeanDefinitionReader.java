@@ -58,6 +58,12 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 /**
+ * 读取给定的完全填充的 ConfigurationClass 实例集，
+ * 根据其内容使用给定的 {@link BeanDefinitionRegistry} 注册 bean 定义。
+ * <p>这个类是在 {@link BeanDefinitionReader} 层次结构之后建模的，但没有实现扩展其任何工件，
+ * 因为一组配置类不是 {@link Resource}。
+ * <br/><br/>
+ *
  * Reads a given fully-populated set of ConfigurationClass instances, registering bean
  * definitions with the given {@link BeanDefinitionRegistry} based on its contents.
  *

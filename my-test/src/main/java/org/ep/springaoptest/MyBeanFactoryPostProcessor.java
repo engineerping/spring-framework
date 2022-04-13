@@ -1,6 +1,6 @@
-package org.gcsp.springaoptest;
+package org.ep.springaoptest;
 
-import org.gcsp.springioctest.SysUser;
+import org.ep.springioctest.annotationcomponentscanautowired.SysUser;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
@@ -19,7 +19,7 @@ public class MyBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
 	@Override
 	public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
 		System.out.println("使用自定义的MyBeanFactoryPostProcessor增强BeanDefinition");
-		BeanDefinition sysUserBeanDefinition = beanFactory.getBeanDefinition("sysUser1");
+		BeanDefinition sysUserBeanDefinition = beanFactory.getBeanDefinition("sysRole2");
 		System.out.println(sysUserBeanDefinition.getInitMethodName());
 		System.out.println(sysUserBeanDefinition.getFactoryBeanName());
 	}

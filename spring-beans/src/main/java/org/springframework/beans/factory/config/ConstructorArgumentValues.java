@@ -32,6 +32,8 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.ObjectUtils;
 
 /**
+ * 构造方法注入时,会用到该类
+ *
  * Holder for constructor argument values, typically as part of a bean definition.
  *
  * <p>Supports values for a specific index in the constructor argument list

@@ -1,6 +1,6 @@
-package org.gcsp.springioctest.xml;
+package org.ep.springioctest.xml;
 
-import org.gcsp.springioctest.SysUser;
+import org.ep.springioctest.SysUser;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -10,6 +10,7 @@ public class TestXmlMain {
 		ApplicationContext applicationContext =new ClassPathXmlApplicationContext("application-context-test.xml");
 		// 获取 bean
 		SysUser user = applicationContext.getBean(SysUser.class);
+		// 使用 bean
 		System.out.println(user.getUsername());
 	}
 }

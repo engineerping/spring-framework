@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-	<bean id="sysUser1" name="sysUser1" class="org.gcsp.springioctest.SysUser">
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+	<bean id="sysUser1" name="sysUser1" class="org.ep.springioctest.SysUser">
 		<property name="username" value="老用户"/>
-		<property name="password" value="123"/>
+		<property name="sysRole" ref="sysRole1"/>
 	</bean>
 
-	<bean class="org.gcsp.springaoptest.MyBeanFactoryPostProcessor"></bean>
-	<bean class="org.gcsp.springaoptest.MyBeanPostProcessor"></bean>
+	<bean id="sysRole1" name="sysRole1" class="org.ep.springioctest.SysRole">
+		<property name="id" value="1"/>
+		<property name="name" value="sysRole1"/>
+	</bean>
+
+	<bean class="org.ep.springaoptest.MyBeanPostProcessor"></bean>
 </beans>

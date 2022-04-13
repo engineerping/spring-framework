@@ -1,12 +1,20 @@
-org/gcsp/springaoptest/MyBeanPostProcessor.java
- org.gcsp.springaoptest.MyBeanPostProcessor
-org/gcsp/springioctest/SysUser.java
- org.gcsp.springioctest.SysUser
-org/gcsp/springaoptest/MyBeanFactoryPostProcessor.java
- org.gcsp.springaoptest.MyBeanFactoryPostProcessor
-org/gcsp/springioctest/annotation/SysConfig.java
- org.gcsp.springioctest.annotation.SysConfig
-org/gcsp/springioctest/annotation/TestAnnotationMain.java
- org.gcsp.springioctest.annotation.TestAnnotationMain
-org/gcsp/springioctest/xml/TestXmlMain.java
- org.gcsp.springioctest.xml.TestXmlMain
+org/ep/springioctest/annotationcomponentscanautowired/SysUser.java
+ org.ep.springioctest.annotationcomponentscanautowired.SysUser
+org/ep/springioctest/SysUser.java
+ org.ep.springioctest.SysUser
+org/ep/springaoptest/MyBeanFactoryPostProcessor.java
+ org.ep.springaoptest.MyBeanFactoryPostProcessor
+org/ep/springaoptest/MyBeanPostProcessor.java
+ org.ep.springaoptest.MyBeanPostProcessor
+org/ep/springioctest/annotationcomponentscanautowired/SysRole.java
+ org.ep.springioctest.annotationcomponentscanautowired.SysRole
+org/ep/springioctest/annotationconfiguration/SysConfig.java
+ org.ep.springioctest.annotationconfiguration.SysConfig
+org/ep/springioctest/annotationconfiguration/TestAnnotationMain.java
+ org.ep.springioctest.annotationconfiguration.TestAnnotationMain
+org/ep/springioctest/SysRole.java
+ org.ep.springioctest.SysRole
+org/ep/springioctest/annotationcomponentscanautowired/TestAnnotationMain.java
+ org.ep.springioctest.annotationcomponentscanautowired.TestAnnotationMain
+org/ep/springioctest/xml/TestXmlMain.java
+ org.ep.springioctest.xml.TestXmlMain

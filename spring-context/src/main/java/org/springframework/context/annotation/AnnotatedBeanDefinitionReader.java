@@ -34,6 +34,11 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
+ * 用于以编程方式注册 bean 类,的方便的适配器。
+ * <p>这是 {@link ClassPathBeanDefinitionScanner} 的替代方案，应用相同的注释分辨率，
+ * 但仅适用于显式注册的类。
+ * <br/>
+ *
  * Convenient adapter for programmatic registration of bean classes.
  *
  * <p>This is an alternative to {@link ClassPathBeanDefinitionScanner}, applying

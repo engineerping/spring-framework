@@ -166,7 +166,7 @@ public abstract class FactoryBeanRegistrySupport extends DefaultSingletonBeanReg
 				}
 			}
 			else {
-				object = factory.getObject();
+				object = factory.getObject(); //调用实现了 FactoryBean 接口的 bean 的 getObject方法, 创建 bean 对象.
 			}
 		}
 		catch (FactoryBeanNotInitializedException ex) {

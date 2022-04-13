@@ -22,7 +22,8 @@ import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.core.AliasRegistry;
 
 /**
- * 对BeanDefinition进行增删改查操作
+ * 用于保管BeanDefinition对象,对BeanDefinition对象进行增删改查操作
+ * <br/><br/>
  *
  * Interface for registries that hold bean definitions, for example RootBeanDefinition
  * and ChildBeanDefinition instances. Typically implemented by BeanFactories that

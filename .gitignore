@@ -44,3 +44,6 @@ atlassian-ide-plugin.xml
 *.log
 # VS Code
 .vscode/
+
+# JRebel
+rebel.xml

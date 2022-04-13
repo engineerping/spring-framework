@@ -86,7 +86,21 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * Bean Factory关键类
+ * BeanFactory的一个关键关键类<br/><br/>
+ *
+ * Spring 对 {@link ConfigurableListableBeanFactory}
+ * 和 {@link BeanDefinitionRegistry} 接口的默认实现：
+ * 基于 bean 定义元数据的成熟 bean 工厂，可通过后处理器扩展。
+ * <p>典型用法是在访问 bean 之前首先注册所有 bean 定义（可能从 bean 定义文件中读取）。
+ * 因此，按名称查找 Bean 是在本地 bean 定义表中的廉价操作，对预先解析的 bean 定义元数据对象进行操作。
+ * <p>请注意，特定 bean 定义格式的读取器通常是单独实现的，
+ * 而不是作为 bean 工厂子类实现：
+ * 参见例如 {@link org.springframework.beans.factory.xml.XmlBeanDefinitionReader}。
+ * <p>有关 {@link org.springframework.beans.factory.ListableBeanFactory}
+ * 接口的替代实现，请查看 {@link StaticListableBeanFactory}，它管理现有 bean 实例，
+ * 而不是根据 bean 定义创建新实例。
+ * <br/><br/>
+ *
  * Spring's default implementation of the {@link ConfigurableListableBeanFactory}
  * and {@link BeanDefinitionRegistry} interfaces: a full-fledged bean factory
  * based on bean definition metadata, extensible through post-processors.

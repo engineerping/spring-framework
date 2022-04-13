@@ -22,6 +22,16 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ObjectUtils;
 
 /**
+ * 从其父级继承设置的 bean 的 Bean definition。子 bean 定义对父 bean 定义具有固定的依赖性。
+ * <p>子 bean 定义将从父 bean 继承构造函数参数值、属性值和方法覆盖，并可以选择添加新值。
+ * 如果指定了 init 方法、destroy 方法和/或静态工厂方法，它们将覆盖相应的父设置。
+ * 其余设置将<i>总是<i>取自子定义：依赖、自动装配模式、依赖项检查、单例、延迟初始化。
+ * <p><b>注意：<b>从 Spring 2.5 开始，
+ * 以编程方式注册 bean 定义的首选方法是 {@link GenericBeanDefinition} 类，
+ * 它允许通过 {@link GenericBeanDefinitionsetParentName} 方法动态定义父依赖项。
+ * 对于大多数用例，这有效地取代了 ChildBeanDefinition 类。
+ * <br/><br/>
+ *
  * Bean definition for beans which inherit settings from their parent.
  * Child bean definitions have a fixed dependency on a parent bean definition.
  *

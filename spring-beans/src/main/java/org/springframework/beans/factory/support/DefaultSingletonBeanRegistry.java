@@ -61,6 +61,9 @@ import org.springframework.util.StringUtils;
  * (which inherit from it). Can alternatively also be used as a nested
  * helper to delegate to.
  *
+ * 父类SimpleAliasRegistry 中的方法用于: 对于别名的增删改查操作
+ * 接口SingletonBeanRegistry 中的方法用于: 对单例 bean 的增删改查操作
+ *
  * @author Juergen Hoeller
  * @since 2.0
  * @see #registerSingleton
@@ -74,13 +77,25 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	private static final int SUPPRESSED_EXCEPTIONS_LIMIT = 100;
 
 
-	/** Cache of singleton objects: bean name to bean instance. */
+	/** Cache of singleton objects: bean name to bean instance.
+	 * <p>单例对象缓存：键为bean 名称, 值为 bean 实例.</p>
+	 *
+	 * <p>(一级缓存:缓存已经初始化完成,可以暴露的bean对象,已经完成所有的设置(设置属性、初始化))</p>
+	 */
 	private final Map<String, Object> singletonObjects = new ConcurrentHashMap<>(256);
 
-	/** Cache of singleton factories: bean name to ObjectFactory. */
+	/** Cache of singleton factories: bean name to ObjectFactory.
+	 * <P>单例的工厂的缓存：键为bean 名称, 值为 bean 实例 ObjectFactory. </P>
+	 *
+	 * <p>(三级缓存: 存储回调方法,可以调用回调方法 getObject 获取正在创建的 bean 对象)</p>
+	 */
 	private final Map<String, ObjectFactory<?>> singletonFactories = new HashMap<>(16);
 
-	/** Cache of early singleton objects: bean name to bean instance. */
+	/** Cache of early singleton objects: bean name to bean instance.
+	 * <p>早期单例对象的缓存：键为bean 名称, 值为 bean 实例.</p>
+	 *
+	 * <p>(二级缓存: 缓存没有设置属性的、没有初始化的 bean 对象, 正在创建中, 相对于三级缓存,不需要再 getObject 获取)</p>
+	 */
 	private final Map<String, Object> earlySingletonObjects = new ConcurrentHashMap<>(16);
 
 	/** Set of registered singletons, containing the bean names in registration order. */
